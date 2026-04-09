@@ -1,9 +1,0 @@
-# Aetheris Production Config
-metadata:
-  version: "4.2.0"
-  env: "production"
-network:
-  tick_rate: 128
-  latency_optimization: true
-security:
-  shield_level: "maximum"
