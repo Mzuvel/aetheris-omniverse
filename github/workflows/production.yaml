@@ -1,8 +1,4 @@
-name: Aetheris-CI
-on: [push]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: echo "Pipeline Active"
+environment: production
+security_shield: active
+encryption: AES-256
+tick_rate: 128
