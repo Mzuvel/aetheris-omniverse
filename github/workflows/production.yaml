@@ -1,4 +1,0 @@
-environment: production
-security_shield: active
-encryption: AES-256
-tick_rate: 128
