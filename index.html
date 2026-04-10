@@ -52,7 +52,6 @@
     transform: translate(-50%, -50%);
     transition: transform 0.12s ease, width 0.3s, height 0.3s;
   }
-  body:hover .cursor-ring { }
 
   /* Canvas background */
   #bg-canvas {
@@ -167,7 +166,7 @@
 
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(72px, 14vw, 180px);
+    font-size: clamp(60px, 12vw, 180px);
     line-height: 0.9;
     letter-spacing: 2px;
     color: #fff;
@@ -453,7 +452,7 @@
 
   .stream-metrics {
     position: absolute; bottom: 16px; left: 16px; right: 16px;
-    display: flex; gap: 12px;
+    display: flex; flex-wrap: wrap; gap: 12px;
   }
   .metric-pill {
     background: rgba(5,13,24,0.8);
@@ -534,6 +533,104 @@
   @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,255,0.3); }
     50%       { box-shadow: 0 0 0 12px rgba(0,229,255,0); }
+  }
+
+  /* -------------------------------------------
+     RESPONSIVE DESIGN / MEDIA QUERIES
+  ---------------------------------------------- */
+
+  /* Disable custom cursor on touch devices to ensure native interaction */
+  @media (pointer: coarse) {
+    .cursor, .cursor-ring { display: none !important; }
+    body { cursor: auto; }
+    .nav-cta, .btn-primary, .btn-secondary { cursor: pointer; }
+  }
+
+  @media (max-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .streaming-section {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+    .stream-visual {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 16px 24px;
+    }
+    .nav-logo {
+      font-size: 20px;
+    }
+    .nav-links {
+      display: none; /* Hide navigation links for mobile tidiness */
+    }
+    .nav-cta {
+      padding: 8px 16px;
+      font-size: 10px;
+    }
+
+    .hero {
+      padding: 120px 20px 60px;
+    }
+    .hero-eyebrow {
+      letter-spacing: 4px;
+      font-size: 10px;
+    }
+    .hero-title {
+      font-size: clamp(50px, 15vw, 80px);
+    }
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 320px;
+      gap: 16px;
+    }
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      padding: 16px 0;
+    }
+    .hero-stats {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 60px;
+    }
+    .stat {
+      flex: 1 1 40%;
+    }
+
+    .features {
+      padding: 80px 24px;
+    }
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+    .section-title {
+      font-size: clamp(32px, 8vw, 48px);
+    }
+
+    .streaming-section {
+      padding: 80px 24px;
+    }
+    
+    footer {
+      flex-direction: column;
+      gap: 20px;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
   }
 </style>
 </head>
@@ -729,7 +826,7 @@
 </footer>
 
 <script>
-// Cursor tracking
+// Cursor tracking (Only active on non-touch devices due to media query CSS above)
 const cursor = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursorRing');
 let mx = 0, my = 0, rx = 0, ry = 0;
